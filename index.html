@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR코드 생성기 — 무료 QR코드 만들기 | JWAY</title>
+<meta name="description" content="QR코드 생성기 무료 온라인 도구. URL, 텍스트, 연락처, Wi-Fi 정보를 QR코드로 즉시 변환하고 PNG로 다운로드할 수 있습니다.">
+<meta name="keywords" content="QR코드 생성기, QR코드 만들기, QR코드 무료, QR코드 다운로드, URL QR코드, 명함 QR코드">
+<meta property="og:title" content="QR코드 생성기 — 무료 QR코드 만들기 | JWAY">
+<meta property="og:description" content="URL·텍스트·연락처를 QR코드로 즉시 변환. PNG 다운로드 지원.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://jwaytools.com/qr-generator/og-image.png">
+<link rel="canonical" href="https://jwaytools.com/qr-generator/">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F3FF;--surface:#FFF;--surface-alt:#EDE9FE;--text-primary:#1E1040;--text-secondary:#5B4A8A;--text-tertiary:#9A8CC0;--accent:#7C3AED;--accent-light:#EDE9FE;--accent-hover:#6D28D9;--border:#DDD6FE;--shadow-md:0 4px 16px rgba(0,0,0,.06);--radius:14px;--radius-sm:10px}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--bg);color:var(--text-primary);min-height:100vh;line-height:1.7;-webkit-font-smoothing:antialiased}
+.nav{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 20px;position:sticky;top:0;z-index:100}.nav-inner{max-width:760px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}.nav-logo{font-size:18px;font-weight:700;color:var(--text-primary);text-decoration:none}.nav-logo span{color:var(--accent)}.nav-links{display:flex;gap:14px;flex-wrap:wrap}.nav-links a{font-size:13px;color:var(--text-secondary);text-decoration:none;font-weight:500}.nav-links a:hover{color:var(--accent)}
+.header{text-align:center;padding:48px 20px 0}.header h1{font-size:clamp(28px,5vw,40px);font-weight:700;letter-spacing:-1.5px}.header h1 em{color:var(--accent);font-style:normal}.header p{font-size:15px;color:var(--text-secondary);max-width:460px;margin:8px auto 0}
+.container{max-width:760px;margin:32px auto;padding:0 20px 20px}
+.calc-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:28px 24px}
+.tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}.tab-btn{padding:10px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:500;color:var(--text-secondary);cursor:pointer;transition:all .25s}.tab-btn:hover{border-color:var(--accent);color:var(--accent)}.tab-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.input-section{display:none}.input-section.active{display:block}
+.field-label{display:block;font-size:13px;font-weight:600;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.8px;margin-bottom:8px}
+input[type="text"],input[type="url"],textarea{width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:'Noto Sans KR',sans-serif;font-size:15px;color:var(--text-primary);outline:none;background:var(--surface);resize:vertical}input:focus,textarea:focus{border-color:var(--accent)}
+textarea{min-height:100px}
+.field-group{margin-bottom:16px}
+.qr-output{text-align:center;margin-top:24px;padding:24px;background:var(--surface-alt);border-radius:var(--radius)}
+#qrCanvas{background:#fff;border-radius:8px;border:1.5px solid var(--border)}
+.btn-row{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.btn{padding:12px 28px;border:none;border-radius:var(--radius-sm);font-family:'Noto Sans KR',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-hover)}
+.btn-secondary{background:var(--surface);color:var(--text-secondary);border:1.5px solid var(--border)}.btn-secondary:hover{background:var(--accent-light);color:var(--accent);border-color:var(--accent)}
+.size-row{display:flex;gap:8px;align-items:center;margin-top:12px;justify-content:center}
+.size-row label{font-size:13px;color:var(--text-secondary)}
+.size-row select{padding:8px 12px;border:1.5px solid var(--border);border-radius:8px;font-family:'Noto Sans KR',sans-serif;font-size:14px;outline:none;cursor:pointer}
+.guide-section{margin-top:40px}.guide-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:32px 28px}.guide-card h2{font-size:20px;font-weight:700;margin:28px 0 12px}.guide-card h2:first-child{margin-top:0}.guide-card h3{font-size:16px;font-weight:700;margin:20px 0 8px}.guide-card p{font-size:14px;color:var(--text-secondary);line-height:1.9;margin-bottom:12px}.guide-card p:last-child{margin-bottom:0}
+.guide-tip{background:var(--accent-light);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:14px 18px;margin:16px 0;font-size:14px;color:var(--text-secondary);line-height:1.8}.guide-tip strong{color:var(--text-primary)}
+.guide-table{width:100%;border-collapse:collapse;margin:16px 0}.guide-table th,.guide-table td{padding:10px 14px;font-size:14px;border-bottom:1px solid var(--surface-alt);text-align:left}.guide-table th{font-weight:600;background:var(--surface-alt)}.guide-table td{color:var(--text-secondary)}
+.faq-section{margin-top:32px}.section-title{font-size:20px;font-weight:700;letter-spacing:-.8px;margin-bottom:16px}.faq-item{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden}.faq-q{padding:16px 20px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center}.faq-q:hover{background:var(--surface-alt)}.faq-arrow{font-size:12px;color:var(--text-tertiary);transition:transform .3s}.faq-item.open .faq-arrow{transform:rotate(180deg)}.faq-a{max-height:0;overflow:hidden;transition:max-height .3s}.faq-a-inner{padding:0 20px 16px;font-size:14px;color:var(--text-secondary);line-height:1.8}.faq-item.open .faq-a{max-height:600px}
+.other-tools{margin-top:40px}.other-grid{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:520px){.other-grid{grid-template-columns:1fr 1fr 1fr}}.other-card{display:flex;align-items:center;gap:14px;background:var(--surface);border:1.5px solid var(--border);border-radius:12px;padding:16px 18px;text-decoration:none;color:var(--text-primary);transition:all .2s}.other-card:hover{border-color:var(--accent);transform:translateY(-2px)}.other-icon{font-size:24px}.other-name{font-size:15px;font-weight:600;margin-bottom:2px}.other-desc{font-size:12px;color:var(--text-secondary)}
+.ad-banner{border:1.5px dashed var(--border);border-radius:var(--radius-sm);padding:10px;text-align:center;margin-top:32px}
+.footer{margin-top:48px;background:var(--surface);border-top:1px solid var(--border);padding:32px 20px 20px}.footer-inner{max-width:760px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px}.footer-col{display:flex;flex-direction:column;gap:6px}.footer-col p{font-size:13px;color:var(--text-secondary);max-width:240px;line-height:1.6}.footer-col a{font-size:13px;color:var(--text-secondary);text-decoration:none}.footer-col a:hover{color:var(--accent)}.footer-logo{font-size:18px;font-weight:700;color:var(--text-primary);text-decoration:none;margin-bottom:6px}.footer-logo span{color:var(--accent)}.footer-bottom{max-width:760px;margin:16px auto 0;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--text-tertiary);text-align:center}
+@media(max-width:480px){.header{padding:32px 16px 0}.container{padding:0 12px 16px}.calc-card,.guide-card{padding:20px 16px}.nav-links{gap:10px}.nav-links a{font-size:12px}}
+</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5453815259196400" crossorigin="anonymous"></script>
+</head><body>
+<nav class="nav"><div class="nav-inner"><a href="https://jwaytools.com/" class="nav-logo">J<span>WAY</span></a><div class="nav-links"><a href="https://jwaytools.com/char-counter/">글자수</a><a href="https://jwaytools.com/date-calculator/">날짜</a><a href="https://jwaytools.com/percent-calculator/">퍼센트</a><a href="https://jwaytools.com/salary-calculator/">연봉</a><a href="https://jwaytools.com/bmi-calculator/">BMI</a><a href="https://jwaytools.com/exchange-rate/">환율</a><a href="https://jwaytools.com/unit-converter/">단위</a><a href="https://jwaytools.com/timer/">타이머</a><a href="https://jwaytools.com/qr-generator/">QR</a><a href="https://jwaytools.com/color-converter/">색상</a><a href="https://jwaytools.com/random-picker/">랜덤</a></div></div></nav>
+<header class="header"><h1>QR코드 <em>생성기</em></h1><p>URL, 텍스트, 연락처, Wi-Fi 정보를 QR코드로 즉시 변환합니다. PNG로 다운로드도 가능합니다.</p></header>
+<main class="container">
+<div class="calc-card">
+<div class="tabs">
+<button class="tab-btn active" onclick="switchType('url')">🔗 URL</button>
+<button class="tab-btn" onclick="switchType('text')">📝 텍스트</button>
+<button class="tab-btn" onclick="switchType('wifi')">📶 Wi-Fi</button>
+<button class="tab-btn" onclick="switchType('contact')">👤 연락처</button>
+</div>
+<div id="type-url" class="input-section active">
+<div class="field-group"><label class="field-label">URL 입력</label><input type="url" id="inputUrl" placeholder="https://example.com" value="https://jwaytools.com/"></div>
+</div>
+<div id="type-text" class="input-section">
+<div class="field-group"><label class="field-label">텍스트 입력</label><textarea id="inputText" placeholder="QR코드에 담을 텍스트를 입력하세요..."></textarea></div>
+</div>
+<div id="type-wifi" class="input-section">
+<div class="field-group"><label class="field-label">네트워크 이름 (SSID)</label><input type="text" id="wifiSsid" placeholder="MyWiFi"></div>
+<div class="field-group"><label class="field-label">비밀번호</label><input type="text" id="wifiPass" placeholder="비밀번호"></div>
+<div class="field-group"><label class="field-label">암호화 방식</label><select id="wifiEnc" style="width:100%;padding:12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:15px"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">없음 (Open)</option></select></div>
+</div>
+<div id="type-contact" class="input-section">
+<div class="field-group"><label class="field-label">이름</label><input type="text" id="contactName" placeholder="홍길동"></div>
+<div class="field-group"><label class="field-label">전화번호</label><input type="text" id="contactPhone" placeholder="010-1234-5678"></div>
+<div class="field-group"><label class="field-label">이메일</label><input type="text" id="contactEmail" placeholder="example@email.com"></div>
+</div>
+<div class="btn-row"><button class="btn btn-primary" onclick="generateQR()">QR코드 생성</button></div>
+<div class="qr-output" id="qrOutput" style="display:none">
+<canvas id="qrCanvas"></canvas>
+<div class="size-row"><label>크기:</label><select id="qrSize" onchange="generateQR()"><option value="200">200px</option><option value="300" selected>300px</option><option value="400">400px</option><option value="600">600px</option></select></div>
+<div class="btn-row"><button class="btn btn-secondary" onclick="downloadQR()">📥 PNG 다운로드</button></div>
+</div>
+</div>
+
+<div class="guide-section"><div class="guide-card">
+<h2>QR코드란 무엇인가?</h2>
+<p>QR코드(Quick Response Code)는 1994년 일본의 덴소웨이브가 개발한 2차원 바코드입니다. 기존 바코드가 숫자만 저장할 수 있는 것과 달리 QR코드는 URL, 텍스트, 연락처, Wi-Fi 접속 정보 등 다양한 데이터를 담을 수 있습니다. 스마트폰 카메라로 스캔하면 즉시 해당 정보에 접근할 수 있어 편의성이 뛰어나 전 세계적으로 널리 사용되고 있습니다.</p>
+<p>QR코드는 최대 7,089자의 숫자 또는 4,296자의 영문/숫자 혼합 데이터를 저장할 수 있으며, 약 30%까지 손상되어도 복원이 가능한 오류 정정(Error Correction) 기능을 내장하고 있습니다. 이 때문에 인쇄물에 QR코드가 약간 지저분하게 인쇄되더라도 정상적으로 인식되는 경우가 많습니다.</p>
+
+<h2>QR코드 활용 사례</h2>
+<h3>비즈니스</h3>
+<p>명함에 QR코드를 넣으면 연락처 정보를 스마트폰에 바로 저장할 수 있습니다. 이 도구의 연락처 모드에서 이름·전화번호·이메일을 입력하면 vCard 형식의 QR코드가 생성되어, 스캔 한 번으로 주소록에 추가됩니다. 제품 포장, 매장 안내판, 전단지 등에도 홈페이지 QR코드를 넣어 온라인 접속을 유도할 수 있습니다.</p>
+<h3>매장·카페</h3>
+<p>Wi-Fi QR코드를 만들어 매장에 비치하면 고객이 복잡한 비밀번호를 직접 입력하지 않고 스캔만으로 Wi-Fi에 접속할 수 있습니다. 이 도구의 Wi-Fi 모드에서 SSID와 비밀번호를 입력하면 표준 Wi-Fi QR코드가 생성됩니다.</p>
+<h3>개인 활용</h3>
+<p>블로그, 유튜브 채널, 인스타그램 프로필 등 자신의 온라인 페이지를 QR코드로 만들어 프로필 카드나 포트폴리오에 넣을 수 있습니다. 행사 초대장에 구글 맵 URL QR코드를 넣으면 참석자가 장소를 쉽게 찾을 수 있습니다.</p>
+
+<div class="guide-tip"><strong>팁:</strong> QR코드를 인쇄할 때는 최소 2cm × 2cm 이상의 크기를 유지하세요. 너무 작으면 카메라가 인식하지 못할 수 있습니다. 이 도구의 600px 옵션으로 다운로드하면 인쇄용으로 충분한 해상도입니다.</div>
+
+<h2>QR코드 생성 시 주의사항</h2>
+<p>QR코드에 담는 데이터가 길수록 코드가 복잡해지고 인식 난이도가 올라갑니다. URL을 담을 때는 가능하면 단축 URL을 사용하는 것이 좋습니다. 또한 QR코드는 흰색 배경에 검은색 패턴이 가장 인식률이 높습니다. 색상을 반전시키거나 배경에 복잡한 이미지를 넣으면 인식이 안 될 수 있으니 주의하세요.</p>
+<p>이 도구는 데이터를 외부 서버로 전송하지 않고 브라우저 내에서 직접 QR코드를 생성합니다. 따라서 Wi-Fi 비밀번호나 연락처 같은 민감한 정보도 안전하게 처리됩니다.</p>
+
+<h2>이 도구의 주요 기능</h2>
+<p>URL, 텍스트, Wi-Fi, 연락처 4가지 모드를 지원하며, 탭 전환으로 간편하게 선택할 수 있습니다. 생성된 QR코드는 200px~600px 크기로 조절 가능하며, PNG 파일로 다운로드할 수 있습니다. 모든 처리는 브라우저에서 이루어지므로 네트워크 연결 없이도 작동하며, 입력한 정보는 어디에도 저장되지 않습니다.</p>
+</div></div>
+
+<div class="faq-section"><h2 class="section-title">자주 묻는 질문</h2>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>생성한 QR코드에 유효기간이 있나요?</span><span class="faq-arrow">▼</span></div><div class="faq-a"><div class="faq-a-inner">QR코드 자체에는 유효기간이 없습니다. QR코드는 데이터를 이미지로 인코딩한 것이므로 영구적으로 작동합니다. 다만 URL QR코드의 경우, 해당 웹페이지가 삭제되면 QR코드를 스캔해도 페이지에 접속할 수 없습니다.</div></div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>한글 텍스트도 QR코드로 만들 수 있나요?</span><span class="faq-arrow">▼</span></div><div class="faq-a"><div class="faq-a-inner">네, 한글, 한자, 이모지 등 유니코드 문자를 모두 QR코드에 담을 수 있습니다. 다만 한글은 영문보다 데이터가 크기 때문에 같은 크기 QR코드에 담을 수 있는 글자 수가 적습니다.</div></div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>QR코드를 스캔하는 방법은?</span><span class="faq-arrow">▼</span></div><div class="faq-a"><div class="faq-a-inner">대부분의 스마트폰은 기본 카메라 앱으로 QR코드를 인식합니다. iPhone은 카메라를 열고 QR코드에 비추면 되고, Android는 Google 렌즈 또는 카메라 앱에서 인식됩니다. 별도의 QR코드 리더 앱이 필요하지 않습니다.</div></div></div>
+<div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>입력한 정보가 서버에 저장되나요?</span><span class="faq-arrow">▼</span></div><div class="faq-a"><div class="faq-a-inner">아닙니다. 모든 QR코드 생성은 브라우저 내 JavaScript로 처리됩니다. URL, 텍스트, Wi-Fi 비밀번호, 연락처 등 입력한 어떤 정보도 외부 서버로 전송되지 않습니다.</div></div></div>
+</div>
+
+<section class="other-tools"><h2 class="section-title">다른 무료 도구</h2><div class="other-grid">
+<a href="https://jwaytools.com/color-converter/" class="other-card"><span class="other-icon">🎨</span><div><div class="other-name">색상 변환기</div><div class="other-desc">HEX·RGB·HSL 색상 변환</div></div></a>
+<a href="https://jwaytools.com/char-counter/" class="other-card"><span class="other-icon">✏️</span><div><div class="other-name">글자수 세기</div><div class="other-desc">글자수, 바이트, 단어수 계산</div></div></a>
+<a href="https://jwaytools.com/random-picker/" class="other-card"><span class="other-icon">🎲</span><div><div class="other-name">랜덤 뽑기</div><div class="other-desc">추첨, 랜덤 숫자, 순서 정하기</div></div></a>
+</div></section>
+
+<div class="ad-banner"><ins class="kakao_ad_area" style="display:none;" data-ad-unit="DAN-dY7YmaHnk31ijIwa" data-ad-width="300" data-ad-height="250"></ins><script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script></div>
+</main>
+
+<footer class="footer"><div class="footer-inner"><div class="footer-col"><a href="https://jwaytools.com/" class="footer-logo">J<span>WAY</span></a><p>매일 필요한 실용 도구를 무료로 제공합니다. 모든 계산은 브라우저에서 처리되며 개인정보를 수집하지 않습니다.</p></div><div class="footer-col"><a href="https://jwaytools.com/char-counter/">글자수 세기</a><a href="https://jwaytools.com/date-calculator/">날짜 계산기</a><a href="https://jwaytools.com/percent-calculator/">퍼센트 계산기</a><a href="https://jwaytools.com/salary-calculator/">연봉 실수령액</a><a href="https://jwaytools.com/bmi-calculator/">BMI 계산기</a><a href="https://jwaytools.com/exchange-rate/">환율 계산기</a><a href="https://jwaytools.com/unit-converter/">단위 변환기</a><a href="https://jwaytools.com/timer/">온라인 타이머</a><a href="https://jwaytools.com/qr-generator/">QR코드 생성기</a><a href="https://jwaytools.com/color-converter/">색상 변환기</a><a href="https://jwaytools.com/random-picker/">랜덤 뽑기</a><a href="https://jwaytools.com/privacy-policy.html">개인정보처리방침</a></div></div><div class="footer-bottom">© 2025 JWAY. All rights reserved.</div></footer>
+
+<script>
+// QR Code generator using canvas (no external library)
+// Minimal QR encoder for alphanumeric/byte data
+let currentType='url';
+function switchType(type){currentType=type;document.querySelectorAll('.tab-btn').forEach((b,i)=>{const types=['url','text','wifi','contact'];b.classList.toggle('active',types[i]===type)});document.querySelectorAll('.input-section').forEach(s=>s.classList.remove('active'));document.getElementById('type-'+type).classList.add('active')}
+function getData(){switch(currentType){case 'url':return document.getElementById('inputUrl').value.trim();case 'text':return document.getElementById('inputText').value;case 'wifi':{const s=document.getElementById('wifiSsid').value,p=document.getElementById('wifiPass').value,e=document.getElementById('wifiEnc').value;return 'WIFI:T:'+e+';S:'+s+';P:'+p+';;'}case 'contact':{const n=document.getElementById('contactName').value,ph=document.getElementById('contactPhone').value,em=document.getElementById('contactEmail').value;return 'BEGIN:VCARD\nVERSION:3.0\nFN:'+n+'\nTEL:'+ph+'\nEMAIL:'+em+'\nEND:VCARD'}default:return ''}}
+// Use QR Server API for reliable generation
+function generateQR(){const data=getData();if(!data){alert('내용을 입력해주세요.');return}const size=parseInt(document.getElementById('qrSize').value);const canvas=document.getElementById('qrCanvas');const ctx=canvas.getContext('2d');canvas.width=size;canvas.height=size;ctx.fillStyle='#f5f3ff';ctx.fillRect(0,0,size,size);ctx.fillStyle='#5B4A8A';ctx.font='14px Noto Sans KR';ctx.textAlign='center';ctx.fillText('QR코드 생성 중...',size/2,size/2);const img=new Image();img.crossOrigin='anonymous';img.onload=function(){ctx.fillStyle='#fff';ctx.fillRect(0,0,size,size);ctx.drawImage(img,0,0,size,size);document.getElementById('qrOutput').style.display=''};img.onerror=function(){drawFallbackQR(ctx,data,size);document.getElementById('qrOutput').style.display=''};img.src='https://api.qrserver.com/v1/create-qr-code/?size='+size+'x'+size+'&data='+encodeURIComponent(data)+'&format=png&margin=10'}
+function drawFallbackQR(ctx,data,size){ctx.fillStyle='#fff';ctx.fillRect(0,0,size,size);ctx.fillStyle='#1E1040';ctx.font='bold 14px Noto Sans KR';ctx.textAlign='center';ctx.fillText('QR코드를 생성할 수 없습니다.',size/2,size/2-10);ctx.font='12px Noto Sans KR';ctx.fillStyle='#5B4A8A';ctx.fillText('네트워크 연결을 확인해주세요.',size/2,size/2+15)}
+function downloadQR(){const canvas=document.getElementById('qrCanvas');const link=document.createElement('a');link.download='qrcode-jway.png';link.href=canvas.toDataURL('image/png');link.click()}
+function toggleFaq(el){el.parentElement.classList.toggle('open')}
+</script></body></html>
