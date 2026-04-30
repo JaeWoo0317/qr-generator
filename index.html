@@ -132,4 +132,5 @@ function generateQR(){const data=getData();if(!data){alert('내용을 입력해�
 function drawFallbackQR(ctx,data,size){ctx.fillStyle='#fff';ctx.fillRect(0,0,size,size);ctx.fillStyle='#1E1040';ctx.font='bold 14px Noto Sans KR';ctx.textAlign='center';ctx.fillText('QR코드를 생성할 수 없습니다.',size/2,size/2-10);ctx.font='12px Noto Sans KR';ctx.fillStyle='#5B4A8A';ctx.fillText('네트워크 연결을 확인해주세요.',size/2,size/2+15)}
 function downloadQR(){const canvas=document.getElementById('qrCanvas');const link=document.createElement('a');link.download='qrcode-jway.png';link.href=canvas.toDataURL('image/png');link.click()}
 function toggleFaq(el){el.parentElement.classList.toggle('open')}
-</script></body></html>
+</script><script src="https://jwaytools.com/engagement.js" defer></script>
+</body></html>
